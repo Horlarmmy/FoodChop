@@ -1,0 +1,40 @@
+type FoodProduct = record {
+  id: text;
+  name: text;
+  description: text;
+  price: nat64;
+  quantityAvailable: int;
+  imageUrl: text;
+};
+
+type Order = record {
+  id: text;
+  customerId: text;
+  productId: text;
+  quantity: int;
+  status: variant { 'placed'; 'confirmed'; 'cancelled'; 'delivered' };
+  createdAt: nat64;
+};
+
+type CustomerInteraction = record {
+  id: text;
+  customerId: text;
+  productId: text;
+  rating: int;
+  review: text;
+  createdAt: nat64;
+};
+
+service : {
+  addProduct : (name: text, description: text, price: nat64, quantityAvailable: int, imageUrl: text) -> (FoodProduct);
+  updateProductQuantity : (productId: text, newQuantity: int) -> (bool);
+  getProductById : (productId: text) -> (opt FoodProduct);
+  placeOrder : (customerId: text, productId: text, quantity: int) -> (Order);
+  cancelOrder : (orderId: text) -> (bool);
+  confirmOrder : (orderId: text) -> (bool);
+  deliverOrder : (orderId: text) -> (bool);
+  addCustomerInteraction : (customerId: text, productId: text, rating: int, review: text) -> (CustomerInteraction);
+  getCustomerInteractionsByProduct : (productId: text) -> (vec CustomerInteraction);
+  getOrdersByCustomer : (customerId: text) -> (vec Order);
+  getProducts : () -> (vec FoodProduct);
+};
