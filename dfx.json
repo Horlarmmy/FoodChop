@@ -1,0 +1,13 @@
+{
+  "canisters": {
+    "foodchop": {
+      "main": "src/index.ts",
+      "type": "custom",
+      "build": "npx azle foodchop",
+      "root": "src",
+      "ts": "src/index.ts",
+      "candid": "src/index.did",
+      "wasm": ".azle/foodchop/foodchop.wasm.gz"
+    }
+  }
+}
