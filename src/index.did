@@ -3,13 +3,12 @@ type CustomerInteraction = record {
   review : text;
   createdAt : nat64;
   productId : text;
-  customerId : text;
+  customerId : principal;
   rating : float64;
 };
 type CustomerInteractionPayload = record {
   review : text;
   productId : text;
-  customerId : text;
   rating : float64;
 };
 type FoodPayload = record {
@@ -31,13 +30,9 @@ type Order = record {
   createdAt : nat64;
   productId : text;
   quantity : float64;
-  customerId : text;
+  customerId : principal;
 };
-type OrderPayload = record {
-  productId : text;
-  quantity : float64;
-  customerId : text;
-};
+type OrderPayload = record { productId : text; quantity : float64 };
 type _AzleResult = variant { Ok : CustomerInteraction; Err : text };
 type _AzleResult_1 = variant { Ok : FoodProduct; Err : text };
 type _AzleResult_2 = variant { Ok : vec CustomerInteraction; Err : text };
@@ -49,11 +44,11 @@ service : () -> {
   addProduct : (FoodPayload) -> (_AzleResult_1);
   cancelOrder : (text) -> (bool);
   confirmOrder : (text) -> (bool);
-  deliverOrder : (text) -> (bool) query;
+  deliverOrder : (text) -> (bool);
   getCustomerInteractionsByProduct : (text) -> (_AzleResult_2) query;
   getOrdersByCustomer : (text) -> (_AzleResult_3) query;
   getProducts : () -> (_AzleResult_4) query;
-  getProductsbyId : () -> (_AzleResult_4) query;
+  getProductsbyId : (text) -> (_AzleResult_1) query;
   placeOrder : (OrderPayload) -> (_AzleResult_5);
   updateProductQuantity : (text, float64) -> (_AzleResult_1);
 }
