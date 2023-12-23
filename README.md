@@ -10,7 +10,6 @@ With FoodChop, you can easily manage your product catalog, track orders in real-
 - Node
 - Typescript
 - DFX
-- IC CDK
 
 ## Installation
 
