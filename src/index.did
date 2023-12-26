@@ -1,3 +1,4 @@
+type ConfirmOrderPayload = record { productId : text };
 type CustomerInteraction = record {
   id : text;
   review : text;
@@ -18,9 +19,10 @@ type FoodPayload = record {
   quantityAvailable : float64;
 };
 type FoodProduct = record {
-  id : text;
   name : text;
   description : text;
+  productId : text;
+  author : principal;
   price : nat64;
   quantityAvailable : float64;
 };
@@ -33,22 +35,27 @@ type Order = record {
   customerId : principal;
 };
 type OrderPayload = record { productId : text; quantity : float64 };
+type UpdatePayload = record { productId : text; newQuantity : float64 };
 type _AzleResult = variant { Ok : CustomerInteraction; Err : text };
 type _AzleResult_1 = variant { Ok : FoodProduct; Err : text };
 type _AzleResult_2 = variant { Ok : vec CustomerInteraction; Err : text };
 type _AzleResult_3 = variant { Ok : vec Order; Err : text };
 type _AzleResult_4 = variant { Ok : vec FoodProduct; Err : text };
 type _AzleResult_5 = variant { Ok : Order; Err : text };
+type getOrdersByCustomer = record { customerId : text };
+type getProductsbyId = record { productId : text };
 service : () -> {
   addCustomerInteraction : (CustomerInteractionPayload) -> (_AzleResult);
   addProduct : (FoodPayload) -> (_AzleResult_1);
-  cancelOrder : (text) -> (bool);
-  confirmOrder : (text) -> (bool);
-  deliverOrder : (text) -> (bool);
-  getCustomerInteractionsByProduct : (text) -> (_AzleResult_2) query;
-  getOrdersByCustomer : (text) -> (_AzleResult_3) query;
+  cancelOrder : (ConfirmOrderPayload) -> (bool);
+  confirmOrder : (ConfirmOrderPayload) -> (bool);
+  deliverOrder : (ConfirmOrderPayload) -> (bool) query;
+  getCustomerInteractionsByProduct : (ConfirmOrderPayload) -> (
+      _AzleResult_2,
+    ) query;
+  getOrdersByCustomer : (getOrdersByCustomer) -> (_AzleResult_3) query;
   getProducts : () -> (_AzleResult_4) query;
-  getProductsbyId : (text) -> (_AzleResult_1) query;
+  getProductsbyId : (getProductsbyId) -> (_AzleResult_1) query;
   placeOrder : (OrderPayload) -> (_AzleResult_5);
-  updateProductQuantity : (text, float64) -> (_AzleResult_1);
+  updateProductQuantity : (UpdatePayload) -> (_AzleResult_1);
 }
