@@ -110,7 +110,7 @@ To conclude your work session, you can stop your local Azle replica by executing
   ```
 
 ### Mainnet Testing
-- Navigate to this link [FoodChop](https://a4gq6-oaaaa-aaaab-qaa4q-cai.raw.icp0.io/?id=uf3pk-yyaaa-aaaap-abutq-cai)
+- Navigate to this link [FoodChop](https://a4gq6-oaaaa-aaaab-qaa4q-cai.raw.icp0.io/?id=drfu3-5yaaa-aaaag-achaq-cai)
 - Login with your Identity
 - Proceed to perform operations on the carnister e.g `addProduct`, `placeOrder`, `addCustomerInteraction` etc...
 
