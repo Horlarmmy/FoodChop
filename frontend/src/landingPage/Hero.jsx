@@ -1,5 +1,4 @@
-import React from 'react'
-import { bg0, bg2, } from '../assets/images'
+import { bg0, } from '../assets/images'
 import { order } from '../assets/icons'
 
 const Hero = () => {
