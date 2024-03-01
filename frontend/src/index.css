@@ -1,0 +1,84 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Palanquin:wght@100;200;300;400;500;600;700&display=swap");
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+body{
+    background-color: #f5f0ee;
+}
+.button-gradient{
+  background-image: linear-gradient( to right, hsla(222, 100%, 62%, 1), hsla(272, 57%, 61%, 1), hsla(329, 100%, 65%, 1));
+  color: white;
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, #FFFFFF 0%, #FFFFFF 50%, #3E77FF 51%, #E24D9A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+.hero{
+  background-image: url('assets/images/bg2.jpg');
+  background-repeat: none;
+  background-position: center;
+  
+}
+
+
+@layer components {
+  .max-container {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+/*  
+  .input {
+    @apply sm:flex-1 max-sm:w-full text-base leading-normal text-slate-gray pl-5 max-sm:p-5 outline-none sm:border-none border max-sm:border-slate-gray max-sm:rounded-full;
+  } */
+}
+
+@layer utilities {
+  .padding {
+    @apply sm:px-16 px-[112px] sm:py-24 py-[64px];
+  }
+
+  .padding-x {
+    @apply sm:px-[112px] px-16;
+  }
+
+  .padding-y {
+    @apply sm:py-24 py-12;
+  }
+  
+  .padding-l {
+    @apply sm:pl-16 pl-8;
+  }
+
+  .padding-r {
+    @apply sm:pr-16 pr-8;
+  }
+
+  .padding-t {
+    @apply sm:pt-24 pt-12;
+  }
+
+  .padding-b {
+    @apply sm:pb-24 pb-12;
+  }
+
+  .heading-text{
+     @apply font-montserrat text-2xl font-semibold leading-7 text-center  my-5;
+  }
+  .info-text {
+    @apply font-montserrat text-white-200 text-sm leading-7;
+  }
+}
