@@ -3,14 +3,16 @@ import { fresh, delivery, fast, order, wallet  } from "../assets/icons";
 
 // NAVIGATION 
 export const navLinks = [
-    { href: "#home", label: "Home" },
-    { href: "#training", label: "Offer" },
+    { href: "/", label: "Home" },
+    // { href: "training", label: "Offer" },
+    { href: "food", label: "Menu" },
+    { href: "order", label: "Order" },
     { href: "#training", label: "Service" },
-    { href: "#conference", label: "Order" },
-    { href: "#courses", label: "Menu" },
+   
+    
 ];
 
-//PROFESSIONAL TEACHERS FEATURES
+
 export const features = [
     {
         icon: fast,

@@ -10,7 +10,7 @@ import Footer from './Footer'
 
 const Index = () => {
   return (
-    <div className='py-5'>
+    <div className='pt-5'>
         <Navbar/>
         <Hero/>
         <About/>
