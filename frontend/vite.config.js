@@ -7,10 +7,9 @@ export default {
     react()
   ],
   build: {
-    // Ensure that Rollup can resolve "react-icons/fa"
     rollupOptions: {
-      // Make sure "react-icons/fa" is not treated as an external dependency
-      external: ['react-icons/fa']
+      // Specify external dependencies to prevent Rollup from bundling them
+      external: ['react-icons']
     }
   }
 };

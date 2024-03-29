@@ -12,7 +12,7 @@
   scroll-behavior: smooth;
 }
 body{
-    background-color: #f5f0ee;
+    background-color: #FFFFFF;
 }
 .button-gradient{
   background-image: linear-gradient( to right, hsla(222, 100%, 62%, 1), hsla(272, 57%, 61%, 1), hsla(329, 100%, 65%, 1));

@@ -2,7 +2,8 @@
 import { Routes, Route } from "react-router-dom";
 import Index from "./pages/landingPage/Index";
 import IndexFood from "./pages/foodPage/Index";
-import Cart from "./pages/foodPage/CartPage";
+import Cart from "./pages/Cart/Cart";
+import CheckoutPage from "./pages/Checkout/Checkout";
 
 export default function AppRoutes() {
   // const [cartItems, setCartItems] = useState([]); // Cart state is managed here
@@ -12,6 +13,7 @@ export default function AppRoutes() {
       <Route path="/" element={<Index />} />
       <Route path="food" element={<IndexFood />} />
       <Route path="cart" element={<Cart />} />
+      <Route path="checkout" element={<CheckoutPage />} />
 
       {/* <Route path="/about" element={<About />} />
       <Route path="/contact" element={<Contact />} />

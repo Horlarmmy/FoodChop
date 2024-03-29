@@ -36,13 +36,10 @@ const Food = () => {
       updatedCart.push({ ...itemToAdd, quantity: 1 });
     }
 
-    setCartItems(updatedCart); // Update local state
-    localStorage.setItem("cartItems", JSON.stringify(updatedCart)); // Sync with localStorage
+    setCartItems(updatedCart); 
+    localStorage.setItem("cartItems", JSON.stringify(updatedCart)); 
   };
 
-  // const handleOrderNowClick = () => {
-  //   navigate("/cart"); // Use navigate function to redirect to the cart page
-  // };
 
   return (
     <>
@@ -90,7 +87,7 @@ const Food = () => {
               category.items.map((item) => (
                 <div
                   key={item.id}
-                  className="border-primary text-left border-2 rounded-lg p-5 hover:bg-secondary text-primary hover:text-white-200 cursor-pointer"
+                  className="border-primary text-left border-2 rounded-lg p-5 hover:bg-secondary text-primary hover:text-white-200 "
                 >
                   <img
                     src={`/images/${item.imageUrl}`}
@@ -102,13 +99,13 @@ const Food = () => {
                   <p className="font-bold text-xl">${item.price}</p>
                   <div className="flex justify-between items-center mt-2">
                     <button
-                      className="border-primary border-2 rounded-lg py-2 text-xl px-1 hover:bg-primary/50 bg-white-200 text-primary hover:text-white-200"
+                      className="border-primary border-2 rounded-lg cursor-pointer py-2 text-xl px-1 hover:bg-primary/50 bg-white-200 text-primary hover:text-white-200"
                       onClick={() => handleAddToCart(item)}
                     >
                       Add (${item.price})
                     </button>
-                    <Link to="/cart" className="relative ml-4">
-                      Proceed To Cart
+                    <Link to="/cart" className="relative ml-4 cursor-pointer">
+                      Proceed To Cart →
                     </Link>
                   </div>
                 </div>

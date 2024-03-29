@@ -27,10 +27,13 @@ export const features = [
     },
     {
         icon: delivery,
-        name: "Free Delivery",
-        about: "Your food delivery is absolutely free, just order and enjoy"
+        name: "Little Delivery Fee",
+        about: "We charge a very little delivery fee to cover the cost of transportation."
     }
-    ];
+];
+
+
+
 
 
 export const howItWorks = [
