@@ -9,7 +9,7 @@ export default {
   build: {
     rollupOptions: {
       // Specify external dependencies to prevent Rollup from bundling them
-      external: ['react-icons']
+      external: ['react-icons/fa']
     }
   }
 };
