@@ -4,6 +4,7 @@ import Index from "./pages/landingPage/Index";
 import IndexFood from "./pages/foodPage/Index";
 import Cart from "./pages/Cart/Cart";
 import CheckoutPage from "./pages/Checkout/Checkout";
+import OrderProcessing from "./pages/Order/Order";
 
 export default function AppRoutes() {
   // const [cartItems, setCartItems] = useState([]); // Cart state is managed here
@@ -14,6 +15,7 @@ export default function AppRoutes() {
       <Route path="food" element={<IndexFood />} />
       <Route path="cart" element={<Cart />} />
       <Route path="checkout" element={<CheckoutPage />} />
+      <Route path="order" element={<OrderProcessing />} />
 
       {/* <Route path="/about" element={<About />} />
       <Route path="/contact" element={<Contact />} />

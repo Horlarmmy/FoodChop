@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 const CheckoutPage = () => {
   // State for form inputs
   const [contact, setContact] = useState({
-    email: "",
     firstName: "",
     lastName: "",
     address: "",
@@ -100,27 +99,6 @@ const CheckoutPage = () => {
   return (
     <div className="flex flex-wrap mx-auto p-6">
       <form className="w-full lg:w-2/3 pr-4" onSubmit={handleSubmit}>
-        <h2 className="text-lg mb-3 text-gray-700 font-bold">
-          Contact information
-        </h2>
-        <div className="mb-6">
-          <label
-            htmlFor="email"
-            className="block text-gray-700 text-md font-normal  mb-2"
-          >
-            Email address
-          </label>
-          <input
-            type="email"
-            name="email"
-            required
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            placeholder="you@example.com"
-            value={contact.email}
-            onChange={handleChange}
-          />
-        </div>
-        {/* More form fields for shipping information go here */}
         <h2 className="text-lg my-3 text-gray-700 font-bold">
           Shipping information
         </h2>
