@@ -55,6 +55,7 @@ const Food = () => {
             className="text-primary hover:text-secondary  w-10 h-10"
             aria-label="Cart"
           />
+         
           {cartItems.length > 0 && (
             <span className="absolute -top-2 -right-2 hover:bg-secondary bg-primary  text-white text-xs py-1 px-2 rounded-full">
               {cartItems.reduce((acc, item) => acc + item.quantity, 0)}
@@ -62,9 +63,15 @@ const Food = () => {
           )}
         </Link>
       </nav>
-
+     
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-center py-6">
+      <Link
+          to="/"
+          style={{ display: "block", marginTop: "2rem" }}
+        >
+          ← Return To Home
+        </Link>
+        <div className="flex justify-center mt-0 py-6">
           {categories.map((category) => (
             <button
               key={category.categoryName}
@@ -112,12 +119,7 @@ const Food = () => {
               ))
             )}
         </div>
-        <Link
-          to="/"
-          style={{ display: "block", marginTop: "1rem", marginBottom: "2rem" }}
-        >
-          ← Return To Home
-        </Link>
+        
       </div>
     </>
   );

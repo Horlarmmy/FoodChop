@@ -49,7 +49,7 @@ const CheckoutPage = () => {
     // Clear cart
     setCartItems([]);
     // Clear the cart from localStorage
-    localStorage.removeItem("cartItems");
+    // localStorage.removeItem("cartItems");
 
     // direct to order payment page
     //   window.location.href = "/payment";
