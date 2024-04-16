@@ -6,30 +6,31 @@ import {
 import { useState, useEffect, useRef } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
+import { Link } from "react-router-dom";
 
 const OrderProcessing = () => {
   // Static data for demonstration purposes
   const ongoingOrders = [
-    { id: "1DFD9E", restaurant: "Burger King", arrivalTime: "35 min" },
-    { id: "3E40A9", restaurant: "McDonald's", arrivalTime: "60 min" },
+    { id: "1DFD9E", item: "Tuwo", arrivalTime: "35 min" },
+    { id: "3E40A9", item: "Rice and Beans", arrivalTime: "60 min" },
   ];
 
   const previousOrders = [
     {
       id: "PH12G3",
-      restaurant: "Pizza Hut",
-      date: "September 16, 2020",
+      restaurant: "FoodChop",
+      date: "September 16, 2023",
       time: "11:54 PM",
       status: "Completed",
-      items: ["Pepperoni Pie"],
+      items: ["Beef Shawarma"],
     },
     {
       id: "C2R123",
-      restaurant: "Carrows Restaurant",
-      date: "August 22, 2020",
+      restaurant: "FoodChop",
+      date: "April 12, 2024",
       time: "12:06 AM",
       status: "Cancelled",
-      items: ["Cheese Burger Deluxe", "Vegetable Skewers"],
+      items: ["Meat Pie", "Coca Cola"],
     },
   ];
 
@@ -42,7 +43,7 @@ const OrderProcessing = () => {
 
   // Fetch the user's current location when the component mounts
   useEffect(() => {
-    navigator.geolocation.watchPosition(
+    navigator.geolocation.getCurrentPosition(
       (position) => {
         setCurrentLocation({
           latitude: position.coords.latitude,
@@ -99,7 +100,10 @@ const OrderProcessing = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold text-gray-800 mb-6">
+      <Link to="/" className="hover:underline" style={{ display: "block" }}>
+        ← Return To Home
+      </Link>
+      <h1 className="text-2xl font-bold pt-1 text-gray-800 mb-6">
         Tanke, Ilorin
       </h1>
       <section className="mb-10">
@@ -113,7 +117,7 @@ const OrderProcessing = () => {
               className="border p-4 rounded shadow-sm flex items-center justify-between"
             >
               <div>
-                <h3 className="font-medium">{order.restaurant}</h3>
+                <h3 className="font-medium">{order.item}</h3>
                 <div className="flex items-center mt-1">
                   <FaRegClock className="text-gray-500 mr-2" />
                   <span className="text-sm text-gray-600">
@@ -216,7 +220,7 @@ const OrderProcessing = () => {
                   <div key={index} className="flex items-center">
                     <div
                       className={`w-3 h-3 rounded-full mr-2 ${
-                        item.status === "Delivered"
+                        item.status === "On the way"
                           ? "bg-green-500"
                           : "bg-gray-400"
                       }`}

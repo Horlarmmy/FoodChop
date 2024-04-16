@@ -2,7 +2,7 @@
 const Button = ({content}) => {
   return (
     <div>
-      <button className='bg-secondary text-white py-4 text-xl font-semibold hover:bg-secondary/95 hover:text-white active:bg-primary active:text-white px-4 rounded-md'>
+      <button className='bg-secondary text-white md:py-4 py-1 md:text-xl text-base md:font-semibold font-medium hover:bg-secondary/95 hover:text-white active:bg-primary active:text-white md:px-4 px-1 rounded-md'>
         {content}
       </button>
     </div>

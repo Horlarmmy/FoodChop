@@ -7,7 +7,6 @@ export const navLinks = [
     // { href: "training", label: "Offer" },
     { href: "food", label: "Menu" },
     { href: "order", label: "Order" },
-    { href: "#training", label: "Service" },
    
     
 ];
