@@ -5,6 +5,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import ItemModal from "./ItemModal";
 import "./Food.css";
 
+
 const Food = () => {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -12,6 +13,7 @@ const Food = () => {
   const [selectedItem, setSelectedItem] = useState(null);
   const [showModal, setShowModal] = useState(false);
   // const navigate = useNavigate();
+
 
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem("cartItems")) || [];
