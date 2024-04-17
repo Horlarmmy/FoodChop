@@ -2,7 +2,14 @@
   "name": "foodchop",
   "private": true,
   "version": "0.0.0",
+  "description": "Food ordering app build on Internet Computer protocol",
   "type": "module",
+  "keywords": [
+    "Internet Computer",
+    "Motoko",
+    "JavaScript",
+    "Canister"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -10,12 +17,23 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@dfinity/authentication": "^0.9.2",
+    "mapbox-gl": "^3.3.0",
+    "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-geolocation": "^1.0.4",
     "react-icon": "^1.0.0",
+    "react-mapbox-gl": "^5.1.1",
     "react-router-dom": "^6.22.3"
   },
   "devDependencies": {
+    "@dfinity/agent": "^0.20.2",
+    "@dfinity/auth-client": "^0.20.2",
+    "@dfinity/candid": "^0.20.2",
+    "@dfinity/identity": "^0.20.2",
+    "@dfinity/principal": "^0.20.2",
+    "@types/node": "^20.12.7",
     "@types/react": "^18.2.56",
     "@types/react-dom": "^18.2.19",
     "@vitejs/plugin-react": "^4.2.1",

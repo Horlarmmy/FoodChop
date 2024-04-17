@@ -208,18 +208,18 @@ const CheckoutPage = () => {
           </div>
           <div>
             <label
-              htmlFor="zip"
+              htmlFor="postalCode"
               className="block text-gray-700 text-md font-normal mb-2"
             >
-              Zip code
+              Postal code
             </label>
             <input
               type="text"
-              name="zip"
+              name="postalCode"
               required
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               placeholder="12345"
-              value={contact.zip}
+              value={contact.postalCode}
               onChange={handleChange}
             />
           </div>

@@ -2,13 +2,18 @@ import { useState, useEffect } from "react";
 import { getAllFoods } from "../services/foodServices";
 import { Link } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
+import ItemModal from "./ItemModal";
 import "./Food.css";
+
 
 const Food = () => {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [cartItems, setCartItems] = useState([]);
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [showModal, setShowModal] = useState(false);
   // const navigate = useNavigate();
+
 
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem("cartItems")) || [];
@@ -36,10 +41,23 @@ const Food = () => {
       updatedCart.push({ ...itemToAdd, quantity: 1 });
     }
 
-    setCartItems(updatedCart); 
-    localStorage.setItem("cartItems", JSON.stringify(updatedCart)); 
+    setCartItems(updatedCart);
+    localStorage.setItem("cartItems", JSON.stringify(updatedCart));
+  };
+  const handleItemClick = (item) => {
+    setSelectedItem(item);
+    setShowModal(true);
   };
 
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
+  const handleAddReview = (review) => {
+    // Handle adding the review for the selected item
+    console.log("Added review:", review);
+    setShowModal(false);
+  };
 
   return (
     <>
@@ -55,6 +73,7 @@ const Food = () => {
             className="text-primary hover:text-secondary  w-10 h-10"
             aria-label="Cart"
           />
+
           {cartItems.length > 0 && (
             <span className="absolute -top-2 -right-2 hover:bg-secondary bg-primary  text-white text-xs py-1 px-2 rounded-full">
               {cartItems.reduce((acc, item) => acc + item.quantity, 0)}
@@ -64,7 +83,10 @@ const Food = () => {
       </nav>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-center py-6">
+        <Link to="/" style={{ display: "block", marginTop: "2rem" }}>
+          ← Return To Home
+        </Link>
+        <div className="flex justify-center mt-0 py-6">
           {categories.map((category) => (
             <button
               key={category.categoryName}
@@ -93,6 +115,7 @@ const Food = () => {
                     src={`/images/${item.imageUrl}`}
                     alt={item.name}
                     className="w-full h-40 object-cover rounded-md"
+                    onClick={() => handleItemClick(item)}
                   />
                   <h3 className="text-2xl font-bold">{item.name}</h3>
                   <p className="text-lg font-light">{item.description}</p>
@@ -104,6 +127,13 @@ const Food = () => {
                     >
                       Add (${item.price})
                     </button>
+                    {showModal && (
+                      <ItemModal
+                        item={selectedItem}
+                        onClose={handleCloseModal}
+                        onAddReview={handleAddReview}
+                      />
+                    )}
                     <Link to="/cart" className="relative ml-4 cursor-pointer">
                       Proceed To Cart →
                     </Link>
@@ -112,12 +142,6 @@ const Food = () => {
               ))
             )}
         </div>
-        <Link
-          to="/"
-          style={{ display: "block", marginTop: "1rem", marginBottom: "2rem" }}
-        >
-          ← Return To Home
-        </Link>
       </div>
     </>
   );
