@@ -17,6 +17,7 @@ type FoodProduct = Record<{
   productId: string;
   name: string;
   description: string;
+  category: string;
   price: nat64;
   quantityAvailable: number;
   author: Principal;
@@ -25,6 +26,7 @@ type FoodProduct = Record<{
 type FoodPayload = Record<{
   name: string;
   description: string;
+  category: string;
   price: nat64;
   quantityAvailable: number;
 }>
@@ -54,7 +56,7 @@ type OrderPayload = Record<{
 }>
 
 type ConfirmOrderPayload = Record<{
-  productId: string;
+  orderId: string;
 }>
 
 type getProductsbyId = Record<{
@@ -85,7 +87,7 @@ const foodProducts = new StableBTreeMap<string, FoodProduct>(0, 44, 512)
 const orders = new StableBTreeMap<string, Order>(1, 44, 512)
 const customerInteractions = new StableBTreeMap<string, CustomerInteraction>(2, 44, 512)
 
-// // set up with wallet of local user 
+// // set up with wallet of local user
 // const owner: Principal = ic.caller();
 
 
@@ -104,6 +106,7 @@ export function addProduct(
     productId: productId,
     name: payload.name,
     description: payload.description,
+    category: payload.category,
     price: payload.price,
     quantityAvailable: payload.quantityAvailable,
     author: ic.caller(),
@@ -140,7 +143,6 @@ export function updateProductQuantity(payload: UpdatePayload): Result<FoodProduc
     None: () => Result.Err<FoodProduct, string>(`Couldn't update Product with id=${payload.productId}. Product not found`),
   });
 }
-
 
 // Function to get all products by ID
 $query;
@@ -194,10 +196,10 @@ export function placeOrder(payload: OrderPayload): Result<Order, string> {
 $update;
 export function cancelOrder(payload: ConfirmOrderPayload): boolean {
   // Parameter Validation: Ensure that ID is provided
-  if (!payload.productId) {
+  if (!payload.orderId) {
     return false;
   }
-  return match(orders.get(payload.productId), {
+  return match(orders.get(payload.orderId), {
     Some: (order) => {
       // Owner Authorization: Check if the caller is the owner
       if (order.customerId.toString() !== ic.caller().toString()) {
@@ -213,14 +215,15 @@ export function cancelOrder(payload: ConfirmOrderPayload): boolean {
   });
 }
 
+
 //Function for Confirming order
 $update;
 export function confirmOrder(payload: ConfirmOrderPayload): boolean {
   // Parameter Validation: Ensure that ID is provided
-  if (!payload.productId) {
+  if (!payload.orderId) {
     return false;
   }
-  return match(orders.get(payload.productId), {
+  return match(orders.get(payload.orderId), {
     Some: (order) => {
       // Owner Authorization: Check if the caller is the owner
       if (order.customerId.toString() !== ic.caller().toString()) {
@@ -240,10 +243,10 @@ export function confirmOrder(payload: ConfirmOrderPayload): boolean {
 $query;
 export function deliverOrder(payload: ConfirmOrderPayload): boolean {
   // Parameter Validation: Ensure that ID is provided
-  if (!payload.productId) {
+  if (!payload.orderId) {
     return false;
   }
-  return match(orders.get(payload.productId), {
+  return match(orders.get(payload.orderId), {
     Some: (order) => {
       // Owner Authorization: Check if the caller is the owner
       if (order.customerId.toString() !== ic.caller().toString()) {
@@ -300,23 +303,23 @@ export function getOrdersByCustomer(payload: getOrdersByCustomer): Result<Vec<Or
   return Result.Ok(orders.values().filter((order) => order.customerId.toString() === payload.customerId));
 }
 
-  // Functions for managing products
-  $query;
-  export function getProducts(): Result<Vec<FoodProduct>, string> {
-    return Result.Ok(foodProducts.values());
-  }
+// Functions for managing products
+$query;
+export function getProducts(): Result<Vec<FoodProduct>, string> {
+  return Result.Ok(foodProducts.values());
+}
 
 
 
-  // A workaround to make the uuid package work with Azle
-  globalThis.crypto = {
-    getRandomValues: () => {
-      let array = new Uint8Array(32);
+// A workaround to make the uuid package work with Azle
+globalThis.crypto = {
+  getRandomValues: () => {
+    let array = new Uint8Array(32);
 
-      for (let i = 0; i < array.length; i++) {
-        array[i] = Math.floor(Math.random() * 256);
-      }
+    for (let i = 0; i < array.length; i++) {
+      array[i] = Math.floor(Math.random() * 256);
+    }
 
-      return array;
-    },
-  };
+    return array;
+  },
+};
